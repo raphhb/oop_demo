@@ -1,0 +1,348 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #f3f5f1;
+    color: #172d29;
+    font: 16px/1.5 system-ui, sans-serif
+}
+
+header {
+    background: #153e35;
+    color: white;
+    padding: 38px max(24px, calc((100vw - 1160px)/2));
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px
+}
+
+h1 {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+    margin: 5px 0
+}
+
+h2 {
+    font-size: 23px;
+    margin: 0 0 15px
+}
+
+h3 {
+    font-size: 20px;
+    margin: 12px 0 5px
+}
+
+p {
+    margin: 8px 0
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: #718b77
+}
+
+header .eyebrow {
+    color: #bad7a9
+}
+
+header p {
+    color: #cfddd6
+}
+
+.badge {
+    border: 1px solid #64877c;
+    padding: 8px 16px;
+    border-radius: 25px;
+    white-space: nowrap
+}
+
+main {
+    max-width: 1160px;
+    margin: 32px auto;
+    padding: 0 24px
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    gap: 30px
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.section-title span {
+    font-size: 12px;
+    color: #61756b
+}
+
+.products {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px
+}
+
+.product,
+.order,
+.receipt {
+    background: #fff;
+    border: 1px solid #dce4d9;
+    border-radius: 14px;
+    padding: 23px
+}
+
+.product p {
+    font-size: 13px;
+    color: #61756b;
+    min-height: 40px
+}
+
+.product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px
+}
+
+.product-bottom strong {
+    font-size: 23px
+}
+
+button {
+    border: 0;
+    background: #23654f;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 7px;
+    font-weight: 650;
+    cursor: pointer
+}
+
+button:hover {
+    background: #164d3b
+}
+
+button:disabled {
+    opacity: .45;
+    cursor: default
+}
+
+input,
+select {
+    width: 100%;
+    border: 1px solid #c6d3c7;
+    border-radius: 7px;
+    padding: 11px;
+    font: inherit;
+    background: #fff;
+    color: #172d29
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    font-weight: 650;
+    margin-bottom: 6px
+}
+
+.search {
+    margin: 10px 0 22px
+}
+
+.search input {
+    margin-top: 6px
+}
+
+.order {
+    align-self: start
+}
+
+.text-button {
+    background: transparent;
+    color: #39614f
+}
+
+.secondary {
+    background: #eaf0e6;
+    color: #284d3d
+}
+
+.line {
+    border-bottom: 1px solid #e3e9df;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap
+}
+
+.line form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px
+}
+
+.line label {
+    margin: 0
+}
+
+.qty {
+    width: 65px;
+    padding: 6px
+}
+
+.line small {
+    font-size: 11px;
+    color: #61756b
+}
+
+.empty {
+    padding: 30px;
+    text-align: center;
+    color: #61756b;
+    background: #f5f7f2;
+    border-radius: 9px
+}
+
+.policy {
+    margin-top: 23px
+}
+
+.policy select {
+    margin-bottom: 8px
+}
+
+dl {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 9px;
+    font-size: 14px;
+    margin: 24px 0
+}
+
+dd {
+    margin: 0;
+    font-weight: 700
+}
+
+.grand {
+    font-size: 23px;
+    padding-top: 15px;
+    border-top: 1px solid #dce4d9
+}
+
+.checkout {
+    width: 100%;
+    margin-top: 12px;
+    padding: 14px
+}
+
+.note {
+    font-size: 11px;
+    color: #61756b;
+    text-align: center
+}
+
+.error {
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #fff0ed;
+    border: 1px solid #d99888;
+    border-radius: 8px;
+    color: #95321e
+}
+
+.concepts {
+    margin: 30px 0;
+    padding: 23px;
+    background: #e6eddf;
+    border-radius: 12px
+}
+
+.concepts p {
+    font-size: 14px;
+    line-height: 1.9
+}
+
+.receipt {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    border: 2px solid #23654f
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse
+}
+
+th,
+td {
+    text-align: left;
+    padding: 9px;
+    border-bottom: 1px solid #dce4d9
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: #61756b
+}
+
+[hidden] {
+    display: none !important
+}
+
+@media(max-width:800px) {
+    .layout {
+        grid-template-columns: 1fr
+    }
+
+    header {
+        display: block
+    }
+
+    .badge {
+        display: inline-block;
+        margin-top: 15px
+    }
+
+    h1 {
+        font-size: 34px
+    }
+}
+
+@media(max-width:450px) {
+    .products {
+        grid-template-columns: 1fr
+    }
+}
+
+@media print {
+
+    header,
+    .layout,
+    .concepts,
+    footer,
+    .receipt button,
+    .receipt a {
+        display: none
+    }
+
+    .receipt {
+        border: 0
+    }
+
+    body {
+        background: white
+    }
+}

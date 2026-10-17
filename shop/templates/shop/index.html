@@ -1,0 +1,110 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Campus Counter | OOP Demo</title>
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+    <script src="{% static 'shop/script.js' %}" defer></script>
+</head>
+
+<body>
+    <header>
+        <div><span class="eyebrow">PELEC 1 • CLASSROOM DEMO</span>
+            <h1>Campus Counter</h1>
+            <p>A small checkout. A clear example of objects working together.</p>
+        </div><span class="badge">Python + Django</span>
+    </header>
+    <main>{% if error %}<div role="alert" class="error">{{ error }}</div>{% endif %}
+        {% if receipt %}<section class="receipt"><span class="eyebrow">SALE COMPLETE • SIMULATION</span>
+            <h2>Your receipt</h2>
+            <p>{{ receipt.customer }}</p>
+            <table>
+                <tr>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>{% for line in receipt.lines %}<tr>
+                    <td>{{ line.name }}</td>
+                    <td>{{ line.quantity }}</td>
+                    <td>₱{{ line.total }}</td>
+                </tr>{% endfor %}
+            </table>
+            <dl>
+                <dt>Subtotal after product offers</dt>
+                <dd>₱{{ receipt.subtotal }}</dd>
+                <dt>Customer discount</dt>
+                <dd>−₱{{ receipt.discount }}</dd>
+                <dt>Total</dt>
+                <dd>₱{{ receipt.total }}</dd>
+                <dt>Cash</dt>
+                <dd>₱{{ receipt.cash }}</dd>
+                <dt>Change</dt>
+                <dd>₱{{ receipt.change }}</dd>
+            </dl><button id="print-receipt" type="button">Print receipt</button> <a href="{% url 'index' %}">Start next
+                sale</a>
+        </section>{% endif %}
+        <div class="layout">
+            <section>
+                <div class="section-title">
+                    <h2>Pick a product</h2><span>6 sample products</span>
+                </div><label class="search">Search products<input id="search" type="search"
+                        placeholder="Try sandwich or pen…"></label>
+                <div class="products">{% for product in products %}<article class="product"
+                        data-name="{{ product.name|lower }}"><span class="eyebrow">{{ product.id|upper }}</span>
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.pricing_rule }}</p>
+                        <div class="product-bottom"><strong>₱{{ product.price }}</strong>
+                            <form method="post">{% csrf_token %}<input type="hidden" name="action" value="add"><input
+                                    type="hidden" name="product_id" value="{{ product.id }}"><button type="submit">+
+                                    Add</button></form>
+                        </div>
+                    </article>{% endfor %}</div>
+                <p id="no-results" hidden>No matching products.</p>
+            </section>
+            <aside class="order">
+                <div class="section-title">
+                    <h2>Current order</h2>
+                    <form method="post">{% csrf_token %}<button class="text-button" name="action"
+                            value="reset">Reset</button></form>
+                </div>{% for line in lines %}<div class="line"><strong>{{ line.name }}</strong><span>₱{{ line.total
+                        }}</span>
+                    <form method="post">{% csrf_token %}<input type="hidden" name="action" value="quantity"><input
+                            type="hidden" name="product_id" value="{{ line.id }}"><label>Qty <input class="qty"
+                                name="quantity" type="number" min="0" max="20" value="{{ line.quantity }}"
+                                required></label><button class="secondary">Update</button><small>Set 0 to remove</small>
+                    </form>
+                </div>{% empty %}<p class="empty">Your cart is empty.<br>Add a product to begin.</p>{% endfor %}
+                <form method="post" class="policy">{% csrf_token %}<input type="hidden" name="action"
+                        value="policy"><label for="policy">Customer discount</label><select id="policy" name="policy">
+                        <option value="regular" {% if policy == 'regular' %}selected{% endif %}>Regular — 0%</option>
+                        <option value="student" {% if policy == 'student' %}selected{% endif %}>Student demo — 10%</option>
+                        <option value="club" {% if policy == 'club' %}selected{% endif %}>Club demo — 5%</option>
+                    </select><button class="secondary">Apply</button></form>
+                <dl>
+                    <dt>After product offers</dt>
+                    <dd>₱{{ totals.subtotal }}</dd>
+                    <dt>Customer discount</dt>
+                    <dd>−₱{{ totals.discount }}</dd>
+                    <dt class="grand">Total</dt>
+                    <dd class="grand">₱{{ totals.total }}</dd>
+                </dl>
+                <form method="post">{% csrf_token %}<input type="hidden" name="action" value="checkout"><label
+                        for="cash">Cash received (₱)</label><input id="cash" name="cash" type="number" min="0"
+                        step="0.01" placeholder="0.00" required><button class="checkout" {% if not lines %}disabled{% endif %}>Complete sale</button></form>
+                <p class="note">Fictional classroom offers. No payments processed.</p>
+            </aside>
+        </div>
+        <section class="concepts">
+            <h2>Where is the OOP?</h2>
+            <p><b>Inheritance:</b> FoodProduct and AccessoryProduct extend Product. <b>Polymorphism:</b> Cart calls each
+                object's line_total(). <b>Encapsulation:</b> quantities change through validated methods.
+                <b>Exceptions:</b> invalid quantities and insufficient cash produce useful messages.</p>
+        </section>
+    </main>
+    <footer>Campus Counter • Database-free teaching example</footer>
+</body>
+
+</html>
