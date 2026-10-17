@@ -7,7 +7,7 @@ if not key_file.exists():
     key_file.write_text(secrets.token_urlsafe(50))
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or key_file.read_text().strip()
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '[::1]'] + [h for h in os.environ.get('DJANGO_ALLOWED_HOSTS', '').split(',') if h]
 INSTALLED_APPS = ['django.contrib.staticfiles', 'shop']
 MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'django.contrib.sessions.middleware.SessionMiddleware',
