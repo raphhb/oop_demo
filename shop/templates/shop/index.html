@@ -69,8 +69,7 @@
                     <h2>Current order</h2>
                     <form method="post">{% csrf_token %}<button class="text-button" name="action"
                             value="reset">Reset</button></form>
-                </div>{% for line in lines %}<div class="line"><strong>{{ line.name }}</strong><span>₱{{ line.total
-                        }}</span>
+                </div>{% for line in lines %}<div class="line"><strong>{{ line.name }}</strong><span>₱{{ line.total }}</span>
                     <form method="post">{% csrf_token %}<input type="hidden" name="action" value="quantity"><input
                             type="hidden" name="product_id" value="{{ line.id }}"><label>Qty <input class="qty"
                                 name="quantity" type="number" min="0" max="20" value="{{ line.quantity }}"
