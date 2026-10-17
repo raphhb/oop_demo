@@ -14,6 +14,7 @@ MIDDLEWARE = ['django.middleware.security.SecurityMiddleware',
               'django.middleware.common.CommonMiddleware',
               'django.middleware.csrf.CsrfViewMiddleware']
 ROOT_URLCONF = 'config.urls'
+WSGI_APPLICATION = 'config.wsgi.application'
 TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates',
               'DIRS': [], 'APP_DIRS': True, 'OPTIONS': {'context_processors':
               ['django.template.context_processors.request']}}]
