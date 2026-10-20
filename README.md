@@ -42,6 +42,18 @@ Open http://127.0.0.1:8000/ . Stop with Ctrl+C. Internet is needed only to insta
 
 Run checks: `python manage.py check` and `python manage.py test`.
 
+## Vercel deployment
+This project is deployed at https://oop-demo-gtyg.vercel.app/
+
+Environment variables to set in Vercel → Settings → Environment Variables:
+
+| Key | Example Value |
+|---|---|
+| `DJANGO_SECRET_KEY` | `your-secret-key` |
+| `DJANGO_ALLOWED_HOSTS` | `oop-demo-gtyg.vercel.app` |
+
+For multiple domains, comma-separate the values: `oop-demo-gtyg.vercel.app,yourcustomdomain.com`
+
 ## State and limitations
 The small cart contains product IDs and quantities in a signed browser-session cookie. Objects are reconstructed on each request. Cookies are signed, not encrypted: do not store confidential data. Closing the browser normally expires this session, although browser session restoration can retain cookies. Restarting Django does NOT automatically empty carts because the locally generated secret is reused. Use Reset to clear them. Each browser session has its own cart; tabs in the same browser share it.
 
